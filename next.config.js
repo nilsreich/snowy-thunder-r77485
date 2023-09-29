@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
-const withNextIntl = require("next-intl/plugin")(
-  // This is the default (also the `src` folder is supported out of the box)
-  "./i18n.ts",
-);
-module.exports = withNextIntl({
-  // Other Next.js configuration ...
+
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
+module.exports = withPWA({
+  reactStrictMode: true,
 });
