@@ -75,25 +75,26 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-2 m-2 h-[100dvh] overflow-clip relative">
-      {items.map((item) => {
-        return (
-          <div
-            className="py-2 px-4 rounded bg-foreground/10 flex items-center gap-4"
-            key={item.id}
-          >
-            <Checkbox
-              checked={item.checked}
-              onCheckedChange={() => toggleItem(item.id)}
-            />
-            <div className={`${item.checked && "line-through"} grow`}>
-              {item.content}
+      {items &&
+        items.map((item) => {
+          return (
+            <div
+              className="py-2 px-4 rounded bg-foreground/10 flex items-center gap-4"
+              key={item.id}
+            >
+              <Checkbox
+                checked={item.checked}
+                onCheckedChange={() => toggleItem(item.id)}
+              />
+              <div className={`${item.checked && "line-through"} grow`}>
+                {item.content}
+              </div>
+              <Button variant="ghost" onClick={() => deleteItem(item.id)}>
+                <XIcon className="text-foreground/50" />
+              </Button>
             </div>
-            <Button variant="ghost" onClick={() => deleteItem(item.id)}>
-              <XIcon className="text-foreground/50" />
-            </Button>
-          </div>
-        );
-      })}
+          );
+        })}
 
       <form
         className="flex w-full absolute bottom-2 p-2 items-center gap-4"
