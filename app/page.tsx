@@ -12,8 +12,10 @@ interface Item {
 }
 
 const loadLocalStorage = () => {
-  const storedItems = localStorage.getItem("items");
-  return storedItems ? JSON.parse(storedItems) : [];
+  if (typeof window !== "undefined") {
+    const storedItems = localStorage.getItem("items");
+    return storedItems ? JSON.parse(storedItems) : [];
+  }
 };
 
 export default function Home() {
